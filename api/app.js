@@ -28,7 +28,7 @@ app.post('/lists', (req, res) => {
 app.patch('/lists/:id', (req, res) => {
   List.findOneAndUpdate({ _id: req.params.id }, {
     $set: req.body
-  }).then(() => res.sendStatus(200))
+  }).then(() => res.send({ message: 'Updated successfully' }))
 })
 app.delete('/lists/:id', (req, res) => {
   List.findOneAndRemove({ _id: req.params.id }).then(removed => res.send(removed))
@@ -51,7 +51,7 @@ app.post('/lists/:listId/tasks', (req, res) => {
 app.patch('/lists/:listId/tasks/:taskId', (req, res) => {
   Task.findOneAndUpdate({ _id: req.params.taskId, _listId: req.params.listId }, {
     $set: req.body
-  }).then(() => res.sendStatus(200))
+  }).then(() => res.send({ message: "Updated Successfully" }))
 })
 app.delete('/lists/:listId/tasks/:taskId', (req, res) => {
   Task.findOneAndRemove({ _id: req.params.taskId, _listId: req.params.listId }).then(removed => res.send(removed))
