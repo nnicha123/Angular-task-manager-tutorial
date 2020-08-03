@@ -11,7 +11,6 @@
   display: flex;
   width: 100%;
   height: 100%;
-  max-height: 400px;
   max-width: 680px;
 }
 .sidebar {
@@ -30,6 +29,7 @@
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   padding: 42px;
+  position: relative;
 }
 .title {
   font-family: "Lato";
@@ -79,4 +79,15 @@
     text-decoration: line-through;
     opacity: 80%;
   }
+}
+.circle-add-button {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  bottom: 35px;
+  right: 35px;
+  border-radius: 50%;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
 }
