@@ -3,7 +3,7 @@ const app = express()
 const { mongoose } = require('./db/mongoose')
 const bodyParser = require('body-parser')
 // Load in mongoose models
-const { List, Task } = require('./db/models')
+const { List, Task, User } = require('./db/models')
 const cors = require('cors')
 
 // Load middleware
@@ -58,6 +58,18 @@ app.delete('/lists/:listId/tasks/:taskId', (req, res) => {
 })
 app.get('/lists/:listId/tasks/:taskId', (req, res) => {
   Task.findOne({ _id: req.params.taskId, _listId: req.params.listId }).then(doc => res.send(doc))
+})
+// User Routes
+app.post('/users', (req, res) => {
+  let body = req.body
+  let newUser = new User(body)
+  newUser.save().then(() => {
+    return newUser.createSession()
+  }).then((refreshToken) => {
+    return newUser.generateAccessAuthToken().then((accessToken) => {
+      return { accessToken, refreshToken }
+    })
+  })
 })
 
 app.listen(3000, () => {
