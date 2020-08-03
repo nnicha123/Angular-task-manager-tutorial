@@ -4,9 +4,11 @@ const { mongoose } = require('./db/mongoose')
 const bodyParser = require('body-parser')
 // Load in mongoose models
 const { List, Task } = require('./db/models')
+const cors = require('cors')
 
 // Load middleware
 app.use(bodyParser.json())
+app.use(cors())
 
 // Route handlers
 app.get('/lists', (req, res) => {
